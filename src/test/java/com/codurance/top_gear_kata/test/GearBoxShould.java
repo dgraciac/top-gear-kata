@@ -13,7 +13,7 @@ public class GearBoxShould {
     private GearBox gearBox;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         gearBox = new GearBox();
     }
 
@@ -31,8 +31,8 @@ public class GearBoxShould {
 
     @Test public void
     shift_up_when_rpm_greater_than_2000() {
-        gearBox.doit(2001);
-        gearBox.doit(2001);
+        pass_rpms(2001,2001);
+
         gearBox.doit(2001);
 
         assertThat(gearBox.gear()).isEqualTo(3);
@@ -40,9 +40,7 @@ public class GearBoxShould {
 
     @Test public void
     shift_down_when_rpm_lesser_than_500() {
-        gearBox.doit(2001);
-        gearBox.doit(2001);
-        gearBox.doit(2001);
+        pass_rpms(2001,2001,2001);
 
         gearBox.doit(499);
 
@@ -51,15 +49,16 @@ public class GearBoxShould {
 
     @Test public void
     not_shift_upper_than_6() {
-        gearBox.doit(2001);
-        gearBox.doit(2001);
-        gearBox.doit(2001);
-        gearBox.doit(2001);
-        gearBox.doit(2001);
-        gearBox.doit(2001);
+        pass_rpms(2001,2001,2001,2001,2001,2001);
 
         gearBox.doit(2001);
 
         assertThat(gearBox.gear()).isEqualTo(6);
+    }
+
+    private void pass_rpms(int... rpms) {
+        for (int rpm : rpms) {
+            gearBox.doit(rpm);
+        }
     }
 }
