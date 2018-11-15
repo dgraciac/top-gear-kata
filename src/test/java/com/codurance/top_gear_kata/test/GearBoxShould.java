@@ -3,6 +3,7 @@ package com.codurance.top_gear_kata.test;
 
 import com.codurance.top_gear_kata.GearBox;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -38,6 +39,32 @@ public class GearBoxShould {
         gearBox.doit(2001);
 
         assertThat(gearBox.gear()).isEqualTo(3);
+    }
+
+    @Ignore
+    @Test public void
+    shift_down_when_rpm_lesser_than_500() {
+        gearBox.doit(2001);
+        gearBox.doit(2001);
+        gearBox.doit(2001);
+
+        gearBox.doit(499);
+
+        assertThat(gearBox.gear()).isEqualTo(2);
+    }
+
+    @Test public void
+    not_shift_upper_than_6() {
+        gearBox.doit(2001);
+        gearBox.doit(2001);
+        gearBox.doit(2001);
+        gearBox.doit(2001);
+        gearBox.doit(2001);
+        gearBox.doit(2001);
+
+        gearBox.doit(2001);
+
+        assertThat(gearBox.gear()).isEqualTo(6);
     }
 
 
