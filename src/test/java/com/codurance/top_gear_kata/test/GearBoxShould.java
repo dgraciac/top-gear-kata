@@ -28,4 +28,17 @@ public class GearBoxShould {
     }
 
 
+    @Test public void
+    shift_up_when_rpm_greater_than_2000() {
+        GearBox gearBox = new GearBox();
+
+        gearBox.doit(2001);
+        gearBox.doit(2001);
+        gearBox.doit(2001);
+
+        assertThat(gearBox.gear()).isEqualTo(3);
+    }
+
+
+
 }
