@@ -46,4 +46,8 @@ public class GearBox {
 			}
 			e = rpm;
 		}
+
+    public int gear() {
+        return gear;
+    }
 }
