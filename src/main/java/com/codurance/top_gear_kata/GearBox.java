@@ -27,41 +27,38 @@ public class GearBox {
     public static final int MAX_GEAR = 6;
     public static final int NEUTRAL_GEAR = 0;
     public static final int FIRST_GEAR = 1;
-    public static final int SHIFT_UP_THRESHOLD = 2000;
-    public static final int SHIFT_DOWN_THRESHOLD = 500;
     private int gear = NEUTRAL_GEAR;
     private int e = 0;
 
+    private Engine engine = new Engine();
+
     public void doit(int rpm) {
-        if (gear > 0) {
-            if (isOverThreshold(rpm)) {
-                shiftUp();
-            } else if (isBelowThreshold(rpm)) {
-                shiftDown();
-            }
-        }
-        if (gear > MAX_GEAR) {
-            shiftDown();
-        } else if (gear < FIRST_GEAR) {
+        if (isOverThreshold(rpm)) {
             shiftUp();
+        }
+        if (isBelowThreshold(rpm)) {
+            shiftDown();
         }
         e = rpm;
     }
 
     private boolean isBelowThreshold(int rpm) {
-        return rpm < SHIFT_DOWN_THRESHOLD;
+        return engine.isBelowThreshold(rpm);
     }
 
     private boolean isOverThreshold(int rpm) {
-        return rpm > SHIFT_UP_THRESHOLD;
+        return engine.isOverThreshold(rpm);
     }
 
     private void shiftDown() {
-        gear--;
+        if (gear > FIRST_GEAR)
+            gear--;
     }
 
     private void shiftUp() {
-        gear++;
+        if (gear < MAX_GEAR) {
+            gear++;
+        }
     }
 
     public int gear() {
