@@ -34,9 +34,9 @@ public class GearBox {
 
     public void doit(int rpm) {
         if (gear > 0) {
-            if (rpm > SHIFT_UP_THRESHOLD) {
+            if (isOverThreshold(rpm)) {
                 shiftUp();
-            } else if (rpm < SHIFT_DOWN_THRESHOLD) {
+            } else if (isBelowThreshold(rpm)) {
                 shiftDown();
             }
         }
@@ -46,6 +46,14 @@ public class GearBox {
             shiftUp();
         }
         e = rpm;
+    }
+
+    private boolean isBelowThreshold(int rpm) {
+        return rpm < SHIFT_DOWN_THRESHOLD;
+    }
+
+    private boolean isOverThreshold(int rpm) {
+        return rpm > SHIFT_UP_THRESHOLD;
     }
 
     private void shiftDown() {
