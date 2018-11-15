@@ -27,14 +27,16 @@ public class GearBox {
     public static final int MAX_GEAR = 6;
     public static final int NEUTRAL_GEAR = 0;
     public static final int FIRST_GEAR = 1;
+    public static final int SHIFT_UP_THRESHOLD = 2000;
+    public static final int SHIFT_DOWN_THRESHOLD = 500;
     private int gear = NEUTRAL_GEAR;
     private int e = 0;
 
     public void doit(int rpm) {
         if (gear > 0) {
-            if (rpm > 2000) {
+            if (rpm > SHIFT_UP_THRESHOLD) {
                 gear++;
-            } else if (rpm < 500) {
+            } else if (rpm < SHIFT_DOWN_THRESHOLD) {
                 gear--;
             }
         }
