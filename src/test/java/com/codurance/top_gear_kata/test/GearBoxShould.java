@@ -2,6 +2,7 @@ package com.codurance.top_gear_kata.test;
 
 
 import com.codurance.top_gear_kata.GearBox;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -9,10 +10,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GearBoxShould {
 
+    private GearBox gearBox;
+
+    @Before
+    public void setUp() throws Exception {
+        gearBox = new GearBox();
+    }
+
     @Test
     public void return_gear_zero_when_0_rpm() {
-        GearBox gearBox = new GearBox();
-
         gearBox.doit(0);
 
         assertThat(gearBox.gear()).isEqualTo(0);
@@ -20,18 +26,13 @@ public class GearBoxShould {
 
     @Test public void
     dont_change_gear_when_negative_rpm() {
-        GearBox gearBox = new GearBox();
-
         gearBox.doit(-1);
 
         assertThat(gearBox.gear()).isEqualTo(0);
     }
 
-
     @Test public void
     shift_up_when_rpm_greater_than_2000() {
-        GearBox gearBox = new GearBox();
-
         gearBox.doit(2001);
         gearBox.doit(2001);
         gearBox.doit(2001);
