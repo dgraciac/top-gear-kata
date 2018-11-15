@@ -35,17 +35,25 @@ public class GearBox {
     public void doit(int rpm) {
         if (gear > 0) {
             if (rpm > SHIFT_UP_THRESHOLD) {
-                gear++;
+                shiftUp();
             } else if (rpm < SHIFT_DOWN_THRESHOLD) {
-                gear--;
+                shiftDown();
             }
         }
         if (gear > MAX_GEAR) {
-            gear--;
+            shiftDown();
         } else if (gear < FIRST_GEAR) {
-            gear++;
+            shiftUp();
         }
         e = rpm;
+    }
+
+    private void shiftDown() {
+        gear--;
+    }
+
+    private void shiftUp() {
+        gear++;
     }
 
     public int gear() {
