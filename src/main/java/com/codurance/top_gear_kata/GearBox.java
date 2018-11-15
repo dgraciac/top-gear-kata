@@ -24,7 +24,7 @@
 package com.codurance.top_gear_kata;
 
 public class GearBox {
-
+    public static final int MAX_GEAR = 6;
     private int gear = 0;
     private int e = 0;
 
@@ -36,7 +36,7 @@ public class GearBox {
                 gear--;
             }
         }
-        if (gear > 6) {
+        if (gear > MAX_GEAR) {
             gear--;
         } else if (gear < 1) {
             gear++;
