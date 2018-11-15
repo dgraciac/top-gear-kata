@@ -17,4 +17,15 @@ public class GearBoxShould {
 
         assertThat(gearBox.gear()).isEqualTo(0);
     }
+
+    @Test public void
+    dont_change_gear_when_negative_rpm() {
+        GearBox gearBox = new GearBox();
+
+        gearBox.doit(-1);
+
+        assertThat(gearBox.gear()).isEqualTo(0);
+    }
+
+
 }
